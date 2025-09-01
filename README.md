@@ -41,7 +41,7 @@ usermod -aG sudo deploy
 ## Passo 2: Executar o Script de Instalação
 
 sudo apt update && sudo apt install -y git \
-&& git clone [https://github.com/weliton2k/instalador-whaticket-main-v.10.0.1.git](https://github.com/weliton2k/instalador-whaticket-main-v.10.0.1.git) \
+&& git clone https://github.com/hzinfinty/waticketsaas_src.git
 && cd instalador-whaticket-main-v.10.0.1 \
 && sudo chmod +x ./install_primaria \
 && sudo ./install_primaria
