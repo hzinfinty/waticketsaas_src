@@ -1,109 +1,47 @@
-# Instalación de Whaticket 10.9
+# Whaticket SaaS - Plataforma de Atendimento Multi-usuários
 
-Esta versión es liberada gracias al aporte de @LeandroReis2907, especialista en infraestructura TI en Brasil. Bajo ese concepto, mi aporte en contenido en español está alineado con los conceptos de @LeandroReis2907.
+![Status](https://img.shields.io/badge/status-ativo_e_em_desenvolvimento-green)
+![Mantido por](https://img.shields.io/badge/Mantido%20por-Hyô%20Seido-blue)
 
----
+Uma plataforma de código aberto para atendimento multi-usuários via WhatsApp, ideal para equipes de suporte e vendas que precisam compartilhar um único número de forma organizada e eficiente.
 
-## 1. Acceso al servidor VPS
-
-Adquiere un servidor VPS con sistema operativo **Ubuntu 20.04** o superior. En este caso, se recomienda el proveedor [Contabo](https://contabo.com).
-
-Ejemplo de servidor:
-```
-Server: 62.xx4.2x0.x0
-```
+*Este projeto é mantido e desenvolvido por **Hyô Seido**.*
 
 ---
 
-## 2. Configuración de dominios
+<details open>
+<summary><strong>🇧🇷 Tutorial em Português (Clique para expandir)</strong></summary>
 
-Debes configurar dos subdominios en tu proveedor de dominios, como [GoDaddy](https://www.godaddy.com/) u otro de tu preferencia. Estos subdominios deben apuntar a tu servidor VPS:
-```
-app.subdominio.online
-api.subdominio.online
-```
+## ✨ Funcionalidades Principais
+- **Múltiplos Atendentes:** Vários usuários atendendo em um único número de WhatsApp.
+- **Filas de Atendimento (Chatbot):** Direcione clientes para o departamento certo com um chatbot inicial.
+- **Respostas Rápidas:** Crie atalhos para as mensagens mais comuns.
+- **Agendamento de Mensagens:** Programe o envio de mensagens para seus contatos.
+- **Kanban:** Organize seus tickets em um quadro visual.
+- **Tags:** Categorize seus contatos e tickets para melhor organização.
 
----
+## 🛠️ Tecnologias Utilizadas
+- **Frontend:** React.js, Material-UI
+- **Backend:** Node.js, Express, Sequelize, TypeScript
+- **Banco de Dados:** PostgreSQL
+- **Serviços:** Redis para cache, Socket.IO para comunicação em tempo real.
 
-## 3. Subir el código a GitHub
+## 🚀 Tutorial de Instalação (Servidor de Produção)
 
-Para agilizar el proceso, puedes clonar el repositorio con el código fuente de Whaticket:
-```
-Repositorio: https://github.com/leopoldohuacasiv/waticketsaas.git
-```
+### Pré-requisitos
+- Um servidor (VPS) com **Ubuntu 20.04** ou superior.
+- Dois subdomínios apontados para o IP do seu servidor (ex: `app.seusite.com` e `api.seusite.com`).
 
----
-
-## 4. Iniciar instalación en Ubuntu
-
-1. Accede a tu servidor VPS.
-2. Crea un usuario llamado `deploy` y otórgale permisos:
-    ```bash
-    sudo adduser deploy
-    ```
-    - Asigna una contraseña.
-    - Presiona **Enter** en los campos adicionales.
-3. Otorga permisos sudo al usuario:
-    ```bash
-    sudo usermod -aG sudo deploy
-    ```
-4. Cierra la sesión con:
-    ```bash
-    exit
-    ```
-5. Vuelve a ingresar como el usuario `deploy`:
-    ```bash
-    ssh deploy@tu.ip.vps
-    ```
-
----
-
-## 5. Ejecutar la instalación
-
-Ejecuta el siguiente script para instalar Whaticket:
+### Passo 1: Acesso e Permissões
+Acesse seu servidor como `root` e crie um usuário `deploy` para a instalação:
 ```bash
+adduser deploy
+usermod -aG sudo deploy
+
+## Passo 2: Executar o Script de Instalação
+
 sudo apt update && sudo apt install -y git \
-&& git clone https://github.com/weliton2k/instalador-whaticket-main-v.10.0.1.git \
-&& sudo chmod -R 777 instalador-whaticket-main-v.10.0.1 \
+&& git clone [https://github.com/weliton2k/instalador-whaticket-main-v.10.0.1.git](https://github.com/weliton2k/instalador-whaticket-main-v.10.0.1.git) \
 && cd instalador-whaticket-main-v.10.0.1 \
+&& sudo chmod +x ./install_primaria \
 && sudo ./install_primaria
-```
-
-### Datos requeridos durante la instalación:
-
-- **Tipo de instalación:** `0` (Instalación)
-- **Nombre de la base de datos:** `tubasededatos`
-- **Repositorio de GitHub:** `https://github.com/leopoldohuacasiv/waticketsaas.git`
-- **Instancia/Empresa:** `ponunnombre`
-- **Valor de QR:** `999`
-- **Usuarios conectados:** `999`
-- **Subdominio app:** `app.subdominio.com`
-- **Subdominio API:** `api.subdominio.com`
-- **Conexión 1:** `3000`
-- **Conexión 2:** `4000`
-- **Conexión 3:** `5000`
-
-> **Nota:** La instalación puede tardar entre **40 y 60 minutos** dependera de la velovidad del servidor VPS que contrate.
-
----
-
-## 6. Acceder al sistema
-
-Una vez completada la instalación, ingresa a la plataforma en:
-```
-app.subdominio.com
-```
-
-Credenciales por defecto:
-```
-Usuario: admin@admin.com
-Contraseña: 123456
-```
-
----
-
-### ¡Instalación completada con éxito! 🎉
-
-## Dato Extra
-
-Para lograr cambiar el idioma, necesitas recompilar el frontend y redirecciones el script es.js como principal así tendras una parte en español, el resto tienes que reducirlo manualmente desde código accediendo. Puedes acceder al grupo de whatsapp: [Sistemas con WhatsApp](https://chat.whatsapp.com/HR9PZZLqsRHAP8ZA8s0H5G) e intercambiar ideas, pero para mas detalles conversa con el Admin del grupo.
